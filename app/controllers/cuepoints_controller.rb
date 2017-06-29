@@ -2,12 +2,12 @@
 class CuepointsController < ApplicationController
   # 一覧
   def index
-    # TODO
+    @cuepoints = Cuepoint.all
   end
 
   # 新規
   def new
-    # TODO
+    @cuepoint = Cuepoint.new
   end
 
   # 作成

@@ -1,2 +1,14 @@
 <h1>キューポイント登録</h1>
-<% #TODO %>
+<%= form_for(@cuepoint) do |f| %>
+
+  
+<%= f.label :name, 'キューポイント名' %>
+
+  
+<%= f.text_field :name %>
+
+
+  
+<%= f.submit '登録' %>
+
+<% end %>

@@ -1,2 +1,17 @@
 <h1>キューポイント編集</h1>
-<% #TODO %>
+<h1>id: <%= @cuepoint.id %> の編集ページ</h1>
+
+<%= form_for(@cuepoint) do |f| %>
+  <%= render "shared/error_messages", :object => @cuepoint %>
+  
+<%= f.label :name, 'キューポイント名' %>
+
+  
+<%= f.text_field :name %>
+
+  
+<%= f.submit '変更', class: 'btn btn-primary' %>
+<%= link_to '削除', @cuepoint, method: :delete, data: { confirm: '削除してよろしいですか？一旦削除すると元には戻せません。' }, class: 'btn btn-danger' %>
+<%= link_to '中止', cuepoints_path, class: 'btn btn-warning' %>
+
+<% end %>

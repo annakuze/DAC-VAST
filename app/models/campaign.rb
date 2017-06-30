@@ -1,7 +1,7 @@
 # キャンペーンクラス
 class Campaign < ApplicationRecord
   # TODO
-
+  has_and_belongs_to_many :cuepoints
   # 有効なキャンペーン一覧を返す
   #  - 対象のCue Pointと紐付いている。
   #  - キャンペーンが開始していて、終了する前。

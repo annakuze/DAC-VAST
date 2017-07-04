@@ -30,9 +30,9 @@ class CuepointsController < ApplicationController
 
   # 更新
   def update
-    @cuepoint = Cuepoint.find(cuepoint_params)
+    @cuepoint = Cuepoint.find(params[:id])
 
-    if @cuepoint.save
+    if @cuepoint.update(cuepoint_params)
       flash[:success] = '正常に更新されました'
       redirect_to cuepoints_path
     else

@@ -1,2 +1,43 @@
 <h1>キャンペーン編集</h1>
-<% #TODO %>
+<h1>id: <%= @campaign.id %> の編集ページ</h1>
+
+<%= form_for(@campaign) do |f| %>
+  <%= render "shared/error_messages", :object => @campaign %>
+
+<div class="form-group">  
+　<%= f.label :name, 'キャンペーン名' %>
+　<%= f.text_field :name %>
+</div>
+
+<div class="form-group">
+ <%= f.label :start_at, '開始日時' %>
+ <%= f.text_field :start_at %>
+</div>
+
+<div class="form-group">
+ <%= f.label :end_at, '終了日時' %>
+ <%= f.text_field :end_at %>
+</div>
+
+<div class="form-group">
+ <%= f.label :limit_start, 'ゴールimp' %>
+ <%= f.text_field :limit_start %>
+</div>
+
+<div class="form-group">
+ <%= f.label :movie_url, '動画URL' %>
+ <%= f.text_field :movie_url %>
+</div>
+
+<div class="check_box" >
+    <%= f.label :cuepoint, 'キューポイント' %><br>
+    <%= f.collection_check_boxes(:cuepoint_ids, Cuepoint.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
+</div>
+
+<%= f.submit '変更', class: 'btn btn-primary' %>
+<%= link_to '削除', @campaign, method: :delete, data: { confirm: '削除してよろしいですか？一旦削除すると元には戻せません。' }, class: 'btn btn-danger' %>
+<%= link_to '中止', campaigns_path, class: 'btn btn-warning' %>
+
+<% end %>

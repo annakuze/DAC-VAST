@@ -1,2 +1,31 @@
 <h1>キャンペーン登録</h1>
-<% #TODO %>
+<%= form_for(@campaign) do |f| %>
+  <%= render "shared/error_messages", :object => @campaign %>
+
+  
+<%= f.label :name, 'キャンペーン名' %>
+<%= f.text_field :name %><br>
+
+<%= f.label :start_at, '開始日時' %>
+<%= f.text_field :start_at %><br>
+
+<%= f.label :start_at, '終了日時' %>
+<%= f.text_field :end_at %><br>
+
+<%= f.label :limit_start, 'ゴールimp' %>
+<%= f.text_field :limit_start %><br>
+
+<%= f.label :movie_url, '動画URL' %>
+<%= f.text_field :movie_url %><br>
+
+<div class="check_box" >
+    <%= f.label :cuepoint, 'キューポイント' %><br>
+    <%= f.collection_check_boxes(:cuepoint_ids, Cuepoint.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
+</div>
+ 
+<%= f.submit '登録', class: 'btn btn-primary' %>
+<%= link_to '中止', campaigns_path, class: 'btn btn-warning' %>
+
+<% end %>

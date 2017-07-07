@@ -58,3 +58,6 @@ gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 gem 'validates_timeliness', '~> 4.0'
 gem 'rails-i18n'
+group :production do 
+  gem 'pg'
+end

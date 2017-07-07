@@ -15,6 +15,11 @@ class Campaign < ApplicationRecord
   # @param [Cuepoint, #read] cuepoint キャンペーンの対象となっている Cue Point
   # @return [Array] 該当キャンペーンの配列
   def self.current_avaliable(cuepoint)
-    # TODO
+    ccc = cuepoint.campaigns.
+      where("start_at <= '#{Time.now}' AND end_at >= '#{Time.now}'")
+    return ccc.reject do |campaign|
+      result = Result.where(campaign: campaign, cuepoint: cuepoint).first
+      !result.blank? && result.count_start >= campaign.limit_start
+    end
   end
 end
